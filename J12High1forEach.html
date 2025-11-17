@@ -1,0 +1,55 @@
+<script>
+  function forEachTest1(){
+    console.error("forEachTest1() called..기본사용법");
+    //함수 호출을 위한 원본배열 생성
+    var oldArray = [1,2,3,4,5];
+    //배열을 통해 호추하므로 5번 반복해서 내부 콜백함수를 실행한다.
+    oldArray.forEach(function(currentVal, index, array){
+      /*현재 루프에서의 값과 인덱스를 콘솔에 출력한다.
+      현재값 : 1,2,3,..
+      인덱스값 :0,1,2,3...
+      베열은 모두 */
+      console.log('현재값:'+currentVal, '인덱스:'+index, '배열:'+array);
+    });
+  };
+
+  function forEachTest2(){
+    console.error("forEachTest2() called..배열 요소의 합계");
+    var oldArray = [1,2,3,4,5];
+    var sum = 0;
+    function getSum(currentVal){
+      sum += currentVal;
+    }
+    oldArray.forEach(getSum);
+    console.log(sum);
+  }
+  function forEach3(){
+    console.error("forEachTest3() called..args 매개변수 사용하기");
+    var oldArray = [1,2,3,4,5,6,7,8,9,10];
+    var sum = 0;
+    //콜백함수 내부에서 사용할 인수를 객체로 정의
+    var myArgs = {min:3, max:7};
+    //콜백함수 정의
+    function getSum(currentVal){
+      /*인수로 사용할 객체의 key를 이용해서 아래 조건에 사용한다.
+      즉 3~7까지의 값만 누적해서 더해준다.*/
+      if(currentVal>=this.min && currentVal<=this.max){
+        //현재 루프의 요소를 sum 누적해서 더한다.
+        sum += currentVal;
+      }
+    }
+    //콜백함수와 객체로 인수를 전달하여 함수를 실행한다.
+    oldArray.forEach(getSum, myArgs);
+    //3~7사이의 
+    console.log(sum);
+  }
+</script>
+<body>
+  <h2>고차함수 - forEach()</h2>
+  <div>
+    <input type="button" onclick="forEachTest1();" value="forEach1">
+    <input type="button" onclick="forEachTest2();" value="forEach2">
+    <input type="button" onclick="forEachTest3();" value="forEach3">
+    <input type="button" onclick="forEachTest4();" value="forEach4">
+  </div>
+</body>

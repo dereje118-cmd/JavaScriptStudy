@@ -1,0 +1,51 @@
+<script type="text/javascript">
+  function mapTest1(){
+    console.error("mapTest1() called ... 기본사용법");
+    var oldArray = [1,2,3,4,5];
+    var newArray = oldArray.map(
+      function(currentVal, index, array){
+        return currentVal*2;
+      }
+    );
+    console.log(newArray);
+  }
+
+  function mapTest2(){
+    console.error("mapTest2() called .. JSon객체 배열 활용하기");
+    var oldJSON = [
+      {name : "이건", salary : 50000000},
+      {name : "홍길동", salary : 1000000},
+      {name : "임신구", salary : 3000000},
+      {name : "이승룡", salary : 2000000},
+      ];
+    var newJson = oldJSON.map(function(currentVal){
+      var returnObj = {}
+      /*각 루프에서 currentVal로 전달되는 값은
+    {name : "홍길동", salary : 1000000} 와 같은 객체이다.
+    따라서 name을 Key로 사용하고, salary를 Value로 설정한 새로운
+    객체를 */
+      returnObj[currentVal.name] = currentVal.salary;
+      return returnObj;
+    });
+    console.log(newJson);
+  }
+  //콜백함수로 화설표함수를 사용
+  function mapTest3(){
+    console.error("mapTest2() called..화살표 함수 사용하기");
+    var oldArray = [1,2,3,4,5];
+    //익명함수 대신 화살표함수로 정의
+    var newArray = oldArray.map((num) => {
+      //각 루프의 요소를 제곱한 결과
+      return Math.pow(num, 2);
+    });
+    console.log(newArray);
+  }
+</script>
+<body>
+  <h2>고차함수 - map()</h2>
+  <div>
+    <input type="button" onclick="mapTest1();" value="map1">
+    <input type="button" onclick="mapTest2();" value="map2">
+    <input type="button" onclick="mapTest3();" value="map3">
+  </div>
+</body>

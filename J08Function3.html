@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>J08Function3.html</title>
+</head>
+<body>
+  <h2>ES6에서 등장한 let</h2>
+  <script>
+    function Func1(){
+      let num1 = 1;
+      console.log("Func1 내부의 num1 = " + num1);
+    }
+
+    function myFunc2(){
+      // num1은 Func1 내부에서만 존재하므로 접근 불가
+      console.log("myFunc2에서 num1을 사용할 수 없습니다 (스코프 오류).");
+    }
+
+    // 함수 호출
+    Func1();
+    myFunc2();
+
+    // for문 let 스코프 테스트
+    for(let i = 0; i <= 10; i++){
+      console.log("for 루프 안 i = " + i);
+    }
+
+    // 블록 밖에서는 i 사용 불가
+    console.log("for 루프 밖에서는 i를 사용할 수 없습니다.");
+  </script>
+</body>
+</html>
