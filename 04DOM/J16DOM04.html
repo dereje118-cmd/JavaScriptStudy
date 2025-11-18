@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    var myColor = ['red', 'green', 'blue', 'violet'];
+    var cnt = 0;
+    function createDOM() {
+      //body 태그의 DOM을 얻어온다
+      var myBody = document.getElementById("myBody");
+      //div 엘리먼트를 동적적으로 생성
+      var newDiv = document.createElement("div");
+      newDiv.innerHTML = "새로 생성된 div입니다.";
+      newDiv.setAttribute("id", "myDiv");
+      /*JavaScript에서 CSS스타일 부여할때의 규칙 color
+      와 같은 경우 그대로 사용
+      */
+      newDiv.style.backgroundColor = myColor[++cnt%4];
+      newDiv.onclick = function(){
+        var pe = this.parentElement;
+        pe.removeChild(this);
+      };
+      myBody.appendChild(newDiv);
+
+    }
+  </script>
+</head>
+<body id="myBody">
+  <h3>DOM 동적 추가/삭제</h3>
+  <a href="javascript:createDOM()">동적생성</a>
+</body>
+</html>

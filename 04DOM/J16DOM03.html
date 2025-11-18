@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+    /*태그 선택자*/
+    div{border: 1px solid blue;}
+    /*아이디 선택자*/
+    #mydiv{font-size: 24px;}
+    /*클래스선택자*/
+    .mycls{padding: 5px;}
+  </style>
+
+  <script>
+    // id → 한 개만 선택됨
+    function mDivId(){
+      var div = document.getElementById("mydiv");
+      div.style.color = "red";
+    }
+
+    // class → 여러 개 모두 선택 가능
+    function myDivClass(){
+      var divs = document.getElementsByClassName("mycls");
+      for(var i=0 ; i<divs.length ; i++){
+        divs[i].style.color = "green";
+      }
+    }
+  </script>
+
+  <!-- id는 1개만 -->
+  <div id="mydiv" class="mycls">MyDiv1</div>
+
+  <!-- 나머지는 class만 사용 -->
+  <div class="mycls">MyDiv2</div>
+  <div class="mycls">MyDiv3</div>
+  <div class="mycls">MyDiv4</div>
+
+  <button type="button" onclick="mDivId();">
+    Id버튼
+  </button>
+
+  <button type="button" onclick="myDivClass();">
+    Class버튼
+  </button>
+</body>
+</html>
