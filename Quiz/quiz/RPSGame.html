@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>가위바위보 게임</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    img {
+      width: 100px;
+      height: auto;
+      vertical-align: middle;
+    }
+    #choices {
+      margin-top: 20px;
+    }
+    #result {
+      font-size: 20px;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>가위바위보 게임</h1>
+
+  <div>
+    <button onclick="play('가위')">가위</button>
+    <button onclick="play('바위')">바위</button>
+    <button onclick="play('보')">보</button>
+  </div>
+
+  <div id="choices">
+    <div>
+      <h3>사용자 선택:</h3>
+      <img id="userImg" src="" alt="">
+    </div>
+    <div>
+      <h3>컴퓨터 선택:</h3>
+      <img id="computerImg" src="" alt="">
+    </div>
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    const choices = ['가위', '바위', '보'];
+    const images = ['images/scissors.jpg', 'images/rock.jpg', 'images/paper.jpg'];
+
+    function play(userChoice) {
+      // 사용자 이미지 표시
+      const userIndex = choices.indexOf(userChoice);
+      document.getElementById('userImg').src = images[userIndex];
+      document.getElementById('userImg').alt = userChoice;
+
+      // 컴퓨터 난수 선택
+      const randomIndex = Math.floor(Math.random() * 3);
+      const computerChoice = choices[randomIndex];
+      document.getElementById('computerImg').src = images[randomIndex];
+      document.getElementById('computerImg').alt = computerChoice;
+
+      // 승패 판단
+      let resultText = '';
+      if(userChoice === computerChoice) {
+        resultText = '무승부!';
+      } else if (
+        (userChoice === '가위' && computerChoice === '보') ||
+        (userChoice === '바위' && computerChoice === '가위') ||
+        (userChoice === '보' && computerChoice === '바위')
+      ) {
+        resultText = '사용자 승!';
+      } else {
+        resultText = '컴퓨터 승!';
+      }
+
+      document.getElementById('result').textContent = resultText;
+    }
+  </script>
+</body>
+</html>
