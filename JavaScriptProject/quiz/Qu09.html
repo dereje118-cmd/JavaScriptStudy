@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qu09</title>
+</head>
+<body>
+  <h2>난수 10개 생성</h2>
+
+  <script>
+    // 난수 10개를 저장할 배열
+    var plots = [];
+
+    // 1~100 난수 10개 생성하여 배열에 저장
+    for (var i = 0; i < 10; i++) {
+      var r = Math.floor(Math.random() * 100) + 1; 
+      plots.push(r);
+    }
+
+    // 가장 큰 수 구하기
+    var max = plots[0];
+    for (var i = 1; i < plots.length; i++) {
+      if (plots[i] > max) {
+        max = plots[i];
+      }
+    }
+
+    // 출력
+    document.write("생성된 난수 : " + plots.join(", ") + "<br>");
+    document.write("<h3>가장 큰 수 : " + max + "</h3>");
+  </script>
+
+</body>
+</html>

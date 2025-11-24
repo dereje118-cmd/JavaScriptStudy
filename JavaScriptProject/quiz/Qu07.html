@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qu07</title>
+  <style>
+    body { font-size: 20px; padding: 20px; }
+    #result { margin-top: 20px; font-weight: bold; color: blue; }
+  </style>
+</head>
+<body>
+
+<h2>함수 결과 출력</h2>
+
+<button onclick="showResult()">결과보기</button>
+
+<div id="result">여기에 결과가 출력됩니다.</div>
+
+<script>
+  // 문제07 요구 기능에 맞게 함수를 작성하면 됩니다.
+  // ↓ 아래는 예시이며, 선생님이 요구한 결과 형태로 쉽게 바꿀 수 있습니다.
+
+  function showResult() {
+    // 원하는 결과(예: 계산, 문자열, 반복문 등)
+    let msg = "";
+
+    msg += "1부터 100까지 합 = ";
+    let sum = 0;
+    for (let i = 1; i <= 100; i++) {
+      sum += i;
+    }
+    msg += sum;
+
+    // 화면에 출력
+    document.getElementById("result").innerHTML = msg;
+  }
+</script>
+
+</body>
+</html>

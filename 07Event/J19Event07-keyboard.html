@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    var count = 0;
+
+    function fnKeyHandler(flag){
+      count++;
+      var spanTag = document.getElementById("span");
+      switch(flag){
+        case 1:
+          spanTag.innerHTML = "keydown 이벤트 발생 : " + count;
+          break;
+        case 2:
+          spanTag.innerHTML = "keypress 이벤트 발생 : " + count;
+          break;
+        case 3:
+          spanTag.innerHTML = "keyup 이벤트 발생 : " + count;
+          break;
+      }
+    }
+
+    // ✔ F5(새로고침), Backspace 금지
+    function fnKeyEvent(event){
+      var span = document.getElementById("keySpan");
+      var keycode = event.keyCode;   // 대문자 C가 맞음!
+
+      span.innerHTML = keycode;
+
+      if(keycode == 116 || keycode == 8){
+        alert("해당 문서에서는 F5, Backspace는 사용할 수 없습니다.");
+        return false;
+      }
+    }
+
+    // ✔ 공통 포커스 이동 함수
+    function commonFocusMove(currentId, maxLen, nextId){
+      var obj = document.getElementById(currentId);
+      if(obj.value.length == maxLen){
+        document.getElementById(nextId).focus();
+      }
+    }
+
+    // 주민번호 앞자리 입력 → 자동 포커스 이동
+    function fnJuminFocus(){
+      var obj1 = document.getElementById("ju1");
+      console.log("입력값", obj1.value);
+
+      if(obj1.value.length == 6){
+        document.getElementById("ju2").focus();
+      }
+    }
+  </script>
+</head>
+
+<body>
+
+  <h2>키보드 이벤트</h2>
+
+  <h2>Key 이벤트 테스트</h2>
+
+  keydown : <input type="text" onkeydown="fnKeyHandler(1);" /><br>
+  keypress : <input type="text" onkeypress="fnKeyHandler(2);" /><br>
+  keyup : <input type="text" onkeyup="fnKeyHandler(3);" /><br>
+
+  <span id="span" style="font-size: 1.5em; color: red;"></span>
+
+  <h3>keyCode 이용하여 현재키 알아내기</h3>
+
+  F5와 Backspace는 사용불가합니다.<br>
+  <input type="text" onkeydown="return fnKeyEvent(event);"><br>
+
+  <span id="keySpan" style="color: blue; font-size: 1.5em;"></span>
+
+  <h3>특정 조건에서 포커스 이동하기</h3>
+
+  <h4>주민등록번호 입력하기</h4>
+
+  <input type="text" id="ju1" size="6" maxlength="6"
+         onkeyup="fnJuminFocus();"> -
+  <input type="text" id="ju2" size="7"
+         onkeyup="commonFocusMove('ju2', 7, 'tell');">
+
+  <h3>휴대전화번호 입력하기</h3>
+
+  <input type="text" id="tell" size="3"
+         onkeyup="commonFocusMove('tell',3,'tel2');"> -
+  <input type="text" id="tel2" size="4"
+         onkeyup="commonFocusMove('tel2',4,'tel3');"> -
+  <input type="text" id="tel3" size="4">
+
+</body>
+</html>

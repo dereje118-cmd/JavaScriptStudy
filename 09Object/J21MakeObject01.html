@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>Object(객체)</h2>
+
+  <!-- 방법1: Object() 생성자 -->
+  <script>
+    console.error("방법1");
+    let person = new Object();
+    person.name = "홍길동";
+    person.age = 10;
+
+    function myInfo(){
+      // 템플릿 문자열 사용 (백틱!)
+      return `이름:${this.name}, 나이:${this.age}`;
+    }
+
+    person.info = myInfo;
+    console.log(person.info());
+  </script>
+
+  <!-- 방법2: 생성자 함수 -->
+  <script>
+    /*객체선언2: 생성자를 이용해서 선언한다. 선언시 멤버변수와 멤버함수에는
+    반드시 this를 추가해야한다. */
+    console.error("방법2");
+    let Account = function(owner, balance){
+      //멤버변수: 매개변수를 통해 초기화
+      this.owner = owner;
+      this.balance = balance;
+
+      this.accInfo = function(){
+        // 템플릿 문자열 사용
+        console.log(`예금주:${this.owner}, 잔고:${this.balance}`);
+      }
+    }
+    
+
+    var account = new Account('손오공', 25000);
+    account.accInfo();
+  </script>
+  <!-- 객체선언3: 리터럴 표기법을 이용해서 선언한다.
+        리터럴 포기법은  -->
+
+  <!-- 방법3: 리터럴(객체 표기) -->
+  <script>
+    console.error("방법3");
+    //멤버변수
+    const car = {
+      name : '테슬라',
+      price : 50000,
+      //멤버함수1: 일반함수를 사용하면 객체 내에서 this를 통해 멤버변수에 접근한다.
+      carInfo1 : function(){
+        return `자동차명:${this.name}`;
+      },
+
+      // Arrow function은 this를 사용하지 않는 것이 일반적
+      carInfo2 : () => {
+        return `가격:${car.price}`;
+      }
+    };
+
+    console.log(car.carInfo1());
+    console.log(car.carInfo2());
+  </script>
+
+</body>
+</html>

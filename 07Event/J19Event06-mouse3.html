@@ -1,0 +1,41 @@
+<h3>이미지에 마우스 이벤트 적용하기</h3>
+
+<img id="cardImg"
+     src="../images/1.jpg"
+     alt="하트"
+     style="width:225px; height:313px;"
+     onmouseover="mouseoverFunc(this);"
+     onmouseout="mouseoutFunc();">
+
+<script>
+
+  // ✔ 마우스 오버 → 2.jpg로 변경
+  function mouseoverFunc(obj) {
+    obj.src="../images/2.jpg";
+  }
+
+  // ✔ 마우스 아웃 → 1.jpg로 변경
+  function mouseoutFunc() {
+    document.getElementById("cardImg").src = "../images/1.jpg";
+  }
+
+  // ✔ 이미지 DOM 가져오기
+  const img = document.getElementById("cardImg");
+
+  // 원래 크기 저장
+  const originW = img.style.width;
+  const originH = img.style.height;
+
+  // ✔ 마우스 다운 → 크기 2배
+  img.addEventListener("mousedown", function () {
+    img.style.width = (parseInt(originW) * 2) + "px";
+    img.style.height = (parseInt(originH) * 2) + "px";
+  });
+
+  // ✔ 마우스 업 → 원래 크기 복귀
+  img.addEventListener("mouseup", function () {
+    img.style.width = originW;
+    img.style.height = originH;
+  });
+
+</script>

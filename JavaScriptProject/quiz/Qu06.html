@@ -1,0 +1,75 @@
+<!DOCTYPE html>  
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>암호 입력</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
+    .result { margin-top: 20px; font-weight: bold; color: green; }
+    input[type="text"] { padding: 5px; width: 200px; display: block; margin-bottom: 20px; }
+    .buttons { margin-top: 30px; }
+    button { padding: 6px 12px; margin-right: 10px; }
+  </style>
+</head>
+<body>
+  <h2>암호 입력</h2>
+  <p>정확한 암호를 입력하세요.</p>
+
+  <!-- 입력창 -->
+  <input type="text" id="pwdInput" placeholder="암호 입력">
+
+  <!-- 출력 영역 -->
+  <div id="output" class="result"></div>
+
+  <!-- 버튼을 페이지 하단에 배치 -->
+  <div class="buttons">
+    <button id="confirmBtn">확인</button>
+    <button id="cancelBtn">취소</button>
+  </div>
+
+  <script>
+    const CORRECT = "javascript";
+    const pwdInput = document.getElementById("pwdInput");
+    const output = document.getElementById("output");
+
+    // 확인 버튼 클릭
+    document.getElementById("confirmBtn").addEventListener("click", function() {
+      const input = pwdInput.value.trim();
+
+      if(input === "") {
+        alert("암호를 입력하라!.");
+        pwdInput.focus();
+        return;
+      }
+
+      if(input === CORRECT) {
+        output.textContent = "통과!";
+        alert("암호가 일치합니다. 통과!");
+        pwdInput.value = "";
+      } else {
+        output.textContent = "암호가 틀렸습니다. 다시 시도하세요.";
+        alert("암호가 틀렸습니다. 다시 입력하세요.");
+        pwdInput.value = "";
+        pwdInput.focus();
+      }
+    });
+
+    // 취소 버튼 클릭
+    document.getElementById("cancelBtn").addEventListener("click", function() {
+      const leave = confirm("암호 입력을 취소하시겠습니까?");
+      if(leave){
+        output.textContent = "암호 입력이 취소되었습니다.";
+        pwdInput.value = "";
+      }
+    });
+
+    // 엔터 키로도 확인 가능
+    pwdInput.addEventListener("keyup", function(e){
+      if(e.key === "Enter") {
+        document.getElementById("confirmBtn").click();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>클래스와 상속</h2>
+  <script>
+    class Computer {
+      constructor(b) {
+        this.brand = b;
+      }
+      computerInfo = () => {
+        return '제조사:'+ this.brand;
+      }
+    }
+    class Notebook extends Computer {
+      constructor(b, n) {
+        super(b);
+        this.name = n;
+        }
+      }
+      console.error("부모클래스로 객체 생성");
+      Computer = new Computer("삼성");
+      console.log(Computer.computerInfo());
+
+      console.error("자식클래스로 객체 생성");
+      notebook = new Computer("Apple", "MacBook");
+      console.log(notebook.notebookInfo());
+
+      console.log('멤버변수(부모):'+ notebook.brand);
+      console.log('멤버변수(자식):' + notebook.name);
+  </script>
+</body>
+</html>

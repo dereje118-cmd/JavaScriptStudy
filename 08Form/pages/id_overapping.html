@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>아이디 중복확인</title>
+
+<script type="text/javascript">
+
+// 부모창에 선택한 ID 전달
+function idUse(){
+  opener.document.registFrm.id.value =
+      document.overlapFrm.retype_id.value;
+  self.close();
+}
+
+// 창 열리면 URL 파라미터 읽고 화면에 표시
+window.onload = function(){
+
+  // 현재 URL
+  var url = location.href;
+
+  // ? 뒤의 파라미터 분리
+  var parameters = (url.slice(url.indexOf('?') + 1)).split('&');
+
+  // id=xxx 에서 xxx 가져오기
+  var returnValue = parameters[0].split('=')[1];
+
+  // 화면에 출력
+  document.getElementById('user_id').innerHTML = returnValue;
+}
+</script>
+
+</head>
+<body>
+
+<h2>아이디 중복확인 하기</h2>
+
+<h3>
+  부모창에서 입력한 아이디 :
+  <span id="user_id" style="color:blue; font-weight:bold;"></span>
+</h3>
+
+<h3>아이디가 중복되었을 때 사용할 새 아이디 입력</h3>
+
+<form name="overlapFrm">
+  <input type="text" name="retype_id" size="20" />
+  <input type="button" value="아이디사용하기" onclick="idUse();" />
+</form>
+
+</body>
+</html>
